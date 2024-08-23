@@ -1,0 +1,40 @@
+@{
+    <style>
+    .container {
+        margin-top: 100px;
+    }
+    .btn-custom {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+    }
+    .btn-custom:hover {
+        background-color: #0056b3;
+    }
+</style>
+}
+@if (TempData["AuthError"] != null)
+{
+    <div class="alert alert-danger mb-3" role="alert">
+        @TempData["AuthError"]
+    </div>
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">Şifremi Unuttum</h3>
+                    <form method="post" action="/home/PwReset" autocomplete="off">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">E-posta</label>
+                            <input name="email" required type="email" class="form-control" id="email" placeholder="E-postanızı girin">
+                        </div>
+                        <button type="submit" class="btn btn-custom w-100">Şifre Sıfırlama Bağlantısı Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

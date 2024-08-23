@@ -1,0 +1,132 @@
+@{
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            font-size: 1.25rem;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .chart-container {
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .chart-svg {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+}
+
+@model GelirGider.Models.DashBoard
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Dashboard</h2>
+
+    <!-- Kategoriler -->
+    <div class="section mb-4">
+        <div class="card">
+            <div class="card-header">
+                Kategoriler
+            </div>
+            <div class="card-body">
+                @if (Model.CategoriesList != null && Model.CategoriesList.Any())
+                {
+                <ul class="list-group">
+                    @foreach (var category in Model.CategoriesList)
+                    {
+                    <li class="list-group-item">
+                        @category.Name
+                    </li>
+                    }
+                </ul>
+                }
+                else
+                {
+                <p>Henüz kategori oluşturulmadı. Yeni bir kategori eklemek için <a href="/home/AddCategory" class="btn btn-primary">Buraya Tıklayın</a></p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Gelir ve Gider Özetleri -->
+    <div class="section mb-4">
+        <div class="card">
+            <div class="card-header">
+                Gelir ve Gider Özetleri
+            </div>
+            <div class="card-body">
+                @if (Model.CagsList != null && Model.CagsList.Any())
+                {
+                <!-- Grafik kodu buraya gelecek, eğer veri varsa -->
+                }
+                else
+                {
+                <p>Henüz gelir ve gider kaydı yapılmadı. İlk kaydınızı eklemek için <a href="/home/AddIncomeExpense" class="btn btn-primary">Buraya Tıklayın</a></p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Gelir ve Gider Tablosu -->
+    <div class="section mb-4">
+        <div class="card">
+            <div class="card-header">
+                Gelir ve Gider Tablosu
+            </div>
+            <div class="card-body">
+                @if (Model.CagsList != null && Model.CagsList.Any())
+                {
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Gelir</th>
+                        <th>Gider</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.CagsList)
+                    {
+                    <tr>
+                        <td>@item.CategoryName</td>
+                        <td>@item.Comes</td>
+                        <td>@item.Goes</td>
+                    </tr>
+                    }
+                    </tbody>
+                </table>
+                }
+                else
+                {
+                <p>Henüz gelir ve gider kaydı yapılmadı. İlk kaydınızı eklemek için <a href="/home/AddIncomeExpense" class="btn btn-primary">Buraya Tıklayın</a></p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
